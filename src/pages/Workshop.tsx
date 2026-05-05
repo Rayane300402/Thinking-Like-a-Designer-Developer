@@ -1,11 +1,9 @@
+import NormanDoor from "../components/NormanDoor";
+
 export default function Workshop() {
   return (
     <main className="app-page">
-       <section className="section-view">
-        <div >
-          Section 1
-        </div>
-      </section>
+       <NormanDoor />
 
       <section className="section-view">
         <div>
