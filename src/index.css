@@ -1,0 +1,227 @@
+@import "tailwindcss";
+
+@layer base {
+  @font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/Montserrat-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/Montserrat-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/Montserrat-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/Montserrat-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/Montserrat-Black.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
+  }
+}
+
+@theme {
+  --font-montserrat: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+
+  --color-bg: #09090b;
+  --color-secondary: #ff6900;
+  --color-element: #111113;
+  --color-tertiary: #18181b;
+  --color-text: #ffffff;
+  --color-subtext: #8d8888;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-montserrat);
+  font-weight: 600;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+
+@utility flex-between {
+  @apply flex items-center justify-between;
+}
+
+@utility col-center {
+  @apply flex flex-col items-center justify-center;
+}
+
+@utility abs-center {
+  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+}
+
+@utility text-title {
+  @apply font-montserrat text-[96px] font-black leading-[0.95] tracking-[-0.06em];
+}
+
+@utility text-h1 {
+  @apply font-montserrat text-[64px] font-bold leading-[1.05] tracking-[-0.04em];
+}
+
+@utility text-h2 {
+  @apply font-montserrat text-[40px] font-medium leading-[1.15] tracking-[-0.03em];
+}
+
+@utility text-h3 {
+  @apply font-montserrat text-[32px] font-semibold leading-[1.2] tracking-[-0.02em];
+}
+
+@utility text-body {
+  @apply font-montserrat text-[18px] font-semibold leading-normal;
+}
+
+@utility app-page {
+  @apply min-h-svh w-full bg-bg text-text overflow-x-hidden;
+}
+
+@utility section-view {
+  @apply h-svh w-full flex items-center justify-center overflow-hidden;
+}
+
+@utility section-frame {
+  @apply w-full h-full flex items-center justify-center;
+}
+
+@utility section-content {
+  @apply w-full max-w-[1440px] px-6 md:px-12 lg:px-24;
+}
+
+
+@layer components { 
+
+}
+
+.loader-page {
+  min-height: 100svh;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.absolute {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.inline-block {
+  display: block;
+}
+
+.dash {
+  animation:
+    dashArray 2s ease-in-out infinite,
+    dashOffset 2s linear infinite;
+}
+
+.aiy-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.loader.is-done .dash {
+  animation: none;
+  stroke-dasharray: 360 0;
+  stroke-dashoffset: 0;
+}
+
+.expert-text {
+  margin-top: 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #ff6900;
+  opacity: 0;
+  transform: translateY(-4px);
+  width: 100%;
+  text-align: center;
+  transition:
+    opacity 500ms ease,
+    transform 500ms ease;
+}
+
+.expert-text.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes dashArray {
+  0% {
+    stroke-dasharray: 0 1 359 0;
+  }
+
+  50% {
+    stroke-dasharray: 0 359 1 0;
+  }
+
+  100% {
+    stroke-dasharray: 359 1 0 0;
+  }
+}
+
+@keyframes dashOffset {
+  0% {
+    stroke-dashoffset: 365;
+  }
+
+  100% {
+    stroke-dashoffset: 5;
+  }
+}
+
+.loader.is-done .dash {
+  animation: none;
+  stroke-dasharray: 360 0;
+  stroke-dashoffset: 0;
+}
