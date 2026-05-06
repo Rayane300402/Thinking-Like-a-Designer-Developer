@@ -90,7 +90,7 @@ body {
 }
 
 @utility text-title {
-  @apply font-montserrat text-[96px] font-black leading-[0.95] tracking-[-0.06em];
+  @apply font-montserrat lg:text-[90px] md:text-[70px] text-[45px] font-black leading-[0.95] tracking-[-0.06em];
 }
 
 @utility text-h1 {
@@ -194,6 +194,31 @@ body {
       pointer-events: none;
     }
   }
+
+  .title {
+  @apply w-full h-full grid place-items-center px-6;
+
+  .title-copy {
+    @apply text-title text-text text-center lg:leading-28 md:leading-20 leading-12;
+    will-change: transform, opacity;
+  }
+
+  .title-line {
+    @apply flex items-baseline justify-center;
+  }
+
+  .ing {
+    @apply text-secondary;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: baseline;
+  }
+
+  .text-secondary {
+    @apply text-secondary;
+  }
+}
 }
 
 .loader-page {
