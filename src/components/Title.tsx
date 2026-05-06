@@ -50,7 +50,8 @@ const Title = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-view title">
+    // make section view not work in smaller screens 
+    <section ref={sectionRef} className="section-view title"> 
       <div ref={textRef} className="title-copy">
         <div className="title-line">
           <span>Think</span>

@@ -196,29 +196,104 @@ body {
   }
 
   .title {
-  @apply w-full h-full grid place-items-center px-6;
+    @apply w-full h-full grid place-items-center px-6;
 
-  .title-copy {
-    @apply text-title text-text text-center lg:leading-28 md:leading-20 leading-12;
-    will-change: transform, opacity;
+    .title-copy {
+      @apply text-title text-text text-center lg:leading-28 md:leading-20 leading-12;
+      will-change: transform, opacity;
+    }
+
+    .title-line {
+      @apply flex items-baseline justify-center;
+    }
+
+    .ing {
+      @apply text-secondary;
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      vertical-align: baseline;
+    }
+
+    .text-secondary {
+      @apply text-secondary;
+    }
   }
 
-  .title-line {
-    @apply flex items-baseline justify-center;
-  }
+  .affordanceGame {
+    @apply w-full min-h-svh bg-tertiary text-text overflow-hidden;
 
-  .ing {
-    @apply text-secondary;
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    vertical-align: baseline;
-  }
+    .game-layout {
+      @apply mx-auto grid min-h-svh w-full max-w-360 items-center gap-10 px-6 py-16
+    max-md:flex max-md:flex-col max-md:justify-center;
 
-  .text-secondary {
-    @apply text-secondary;
+      grid-template-columns: 90px minmax(0, 0.9fr) minmax(0, 1.4fr);
+    }
+
+    .game-guide {
+      @apply relative flex flex-col items-center justify-between
+  max-md:flex-row max-md:h-20! max-md:w-90! max-md:max-w-[90vw];
+
+      width: 90px;
+      height: 440px;
+    }
+
+    .guide-line {
+      @apply absolute rounded-full bg-secondary left-1/2 top-0 -translate-x-1/2 h-full w-1.5 max-md:left-0 max-md:top-1/2 max-md:h-1.75 max-md:w-full max-md:translate-x-0 max-md:-translate-y-1/2;
+    }
+
+    .guide-dot {
+      @apply relative z-10 grid place-items-center rounded-full p-0 cursor-pointer max-md:w-6! max-md:h-6!;
+
+      width: 30px;
+      height: 30px;
+      background: #d4d4db;
+
+      transition:
+        width 350ms ease,
+        height 350ms ease,
+        transform 350ms ease,
+        box-shadow 350ms ease,
+        background 350ms ease;
+    }
+
+    .guide-dot span {
+      @apply text-[10px] font-black text-text;
+
+      opacity: 0;
+      transform: scale(0.7);
+
+      transition:
+        opacity 250ms ease,
+        transform 250ms ease;
+    }
+
+    .guide-dot.is-active {
+      @apply max-md:h-10! max-md:w-10!;
+
+      width: 50px;
+      height: 50px;
+      background: #d4d4db;
+
+      box-shadow:
+        0 0 0 8px var(--color-tertiary),
+        0 0 0 13px rgba(255, 105, 0, 0.32);
+    }
+
+    .guide-dot.is-active span {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .guide-dot:hover {
+      transform: scale(1.08);
+    }
+
+    .game-copy,
+    .game-visuals {
+      @apply min-h-105 max-md:min-h-65 max-md:w-full;
+    }
   }
-}
 }
 
 .loader-page {
