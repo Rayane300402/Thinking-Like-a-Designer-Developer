@@ -225,7 +225,7 @@ body {
 
     .game-layout {
       @apply mx-auto grid min-h-svh w-full max-w-360 items-center gap-10 px-6 py-16
-    max-md:flex max-md:flex-col max-md:justify-center;
+    max-md:flex max-md:flex-col max-md:justify-center max-md:gap-0!;
 
       grid-template-columns: 90px minmax(0, 0.9fr) minmax(0, 1.4fr);
     }
@@ -289,7 +289,20 @@ body {
       transform: scale(1.08);
     }
 
-    .game-copy,
+    .game-copy {
+      @apply flex flex-col justify-center text-left max-md:w-full max-md:text-center max-md:items-center max-md:min-h-2.5!;
+
+      min-height: 420px;
+    }
+
+    .game-copy h2 {
+      @apply text-h1 font-bold text-text leading-[1.05] tracking-tighter mb-8 max-md:text-[52px] max-md:mb-6;
+    }
+
+    .game-copy p {
+      @apply text-[24px] font-medium leading-[1.35] text-[#E5E5E5] max-w-135 max-md:text-[18px] max-md:max-w-3/4;
+    }
+
     .game-visuals {
       @apply min-h-105 max-md:min-h-65 max-md:w-full;
     }
