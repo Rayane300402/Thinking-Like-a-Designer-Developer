@@ -3,7 +3,7 @@ import gsap from "gsap";
 
 const labels = ["PUSH?", "PULL?", "REVOLVE?", "SLIDE?", "AUTOMATIC?"];
 
-export default function NormanDoor() {
+const NormanDoor = () => {
   const [labelIndex, setLabelIndex] = useState(0);
   const sceneRef = useRef<HTMLButtonElement | null>(null);
   const doorRef = useRef<HTMLDivElement | null>(null);
@@ -77,3 +77,5 @@ export default function NormanDoor() {
     </section>
   );
 }
+
+export default NormanDoor;
