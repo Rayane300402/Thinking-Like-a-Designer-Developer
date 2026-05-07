@@ -94,7 +94,7 @@ body {
 }
 
 @utility text-h1 {
-  @apply font-montserrat text-[64px] font-bold leading-[1.05] tracking-[-0.04em];
+  @apply font-montserrat lg:text-[55px] md:text-[30px] text-[25px] font-bold leading-[1.05] tracking-[-0.04em];
 }
 
 @utility text-h2 {
@@ -126,9 +126,13 @@ body {
   @apply w-full max-w-360 px-6 md:px-12 lg:px-24;
 }
 
+@utility section-content {
+  @apply w-full h-full grid place-items-center;
+}
+
 @layer components {
   .normanDoor {
-    @apply w-full h-full grid place-items-center  max-md:min-h-[70svh] max-md:py-12;
+    @apply w-full h-full grid place-items-center max-md:py-12;
 
     .door-scene {
       @apply w-full h-full grid place-items-center cursor-pointer bg-transparent border-0 p-0;
@@ -197,7 +201,7 @@ body {
   }
 
   .title {
-    @apply w-full h-full grid place-items-center px-6 max-md:min-h-[75svh] max-md:py-20;
+    @apply w-full h-full grid place-items-center px-6  max-md:py-20;
 
     .title-copy {
       @apply text-title text-text text-center lg:leading-28 md:leading-20 leading-12 max-md:text-[42px] max-md:leading-[0.95];
@@ -223,77 +227,26 @@ body {
   }
 
   .affordanceGame {
-    @apply w-full min-h-svh bg-tertiary text-text overflow-hidden;
+    @apply w-full h-full grid place-items-center bg-tertiary max-md:py-12;
 
     .game-layout {
-      @apply mx-auto grid min-h-svh w-full max-w-360 items-center gap-10 px-6 py-16
-    max-md:flex max-md:flex-col max-md:justify-center max-md:gap-0!;
+      @apply mx-auto grid h-full w-full max-w-360 items-center gap-10 px-6 py-16
+    max-md:flex max-md:flex-col max-md:justify-center max-md:gap-5 max-md:px-5 max-md:py-0;
 
       grid-template-columns: 90px minmax(0, 0.9fr) minmax(0, 1.4fr);
     }
 
-    .game-guide {
-      @apply relative flex flex-col items-center justify-between max-md:flex-row max-md:h-20! max-md:w-90! max-md:max-w-[90vw];
-
-      width: 90px;
-      height: 440px;
-    }
-
-    .guide-line {
-      @apply absolute rounded-full bg-secondary left-1/2 top-0 -translate-x-1/2 h-full w-1.5 max-md:left-0 max-md:top-1/2 max-md:h-1.75 max-md:w-full max-md:translate-x-0 max-md:-translate-y-1/2;
-    }
-
-    .guide-dot {
-      @apply relative z-10 grid place-items-center rounded-full p-0 cursor-pointer w-7.5 h-7.5 max-md:w-6! max-md:h-6! border-solid border-2 border-secondary;
-      background: var(--color-tertiary);
-      transition:
-        width 350ms ease,
-        height 350ms ease,
-        transform 350ms ease,
-        box-shadow 350ms ease,
-        background 350ms ease;
-    }
-
-    .guide-dot span {
-      @apply text-[10px] font-black text-text;
-
-      opacity: 0;
-      transform: scale(0.7);
-
-      transition:
-        opacity 250ms ease,
-        transform 250ms ease;
-    }
-
-    .guide-dot.is-active {
-      @apply max-md:h-10! max-md:w-10! border-none! w-12.5 h-12.5;
-      background: var(--color-tertiary);
-      box-shadow:
-        0 0 0 8px var(--color-tertiary),
-        0 0 0 13px rgba(255, 105, 0, 0.32);
-    }
-
-    .guide-dot.is-active span {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    .guide-dot:hover {
-      transform: scale(1.08);
-    }
-
     .game-copy {
-      @apply flex flex-col justify-center text-left max-md:w-full max-md:text-center max-md:items-center max-md:min-h-2.5!;
-
-      min-height: 420px;
+      @apply flex flex-col justify-center text-left max-md:w-full max-md:text-center max-md:items-center ;
+      min-height: 20px;
     }
 
     .game-copy h2 {
-      @apply text-h1 font-bold text-text leading-[1.05] tracking-tighter mb-8 max-md:text-[52px] max-md:mb-6;
+      @apply text-h1 font-bold text-text leading-[1.05] tracking-tighter mb-8 max-md:mb-6;
     }
 
     .game-copy p {
-      @apply text-[24px] font-medium leading-[1.35] text-[#E5E5E5] max-w-135 max-md:text-[18px] max-md:max-w-3/4;
+      @apply text-[24px] font-medium leading-[1.35] text-[#E5E5E5] max-w-135 max-md:text-[16px] max-md:max-w-3/4;
     }
 
     .game-visuals {
@@ -305,7 +258,7 @@ body {
     }
 
     .visual-card {
-      @apply relative overflow-hidden bg-bg flex items-center justify-center;
+      @apply relative overflow-hidden bg-bg flex items-center justify-center max-md:w-[150px]! max-md:h-[250px]!;
       width: 300px;
       height: 400px;
     }
@@ -335,6 +288,155 @@ body {
     .visual-pair:hover .visual-card.is-next {
       transform: scale(0.98);
     }
+  }
+
+  .coreConcepts {
+    @apply w-full h-full bg-tertiary text-text;
+
+    .core-layout {
+      @apply mx-auto flex h-full w-full max-w-360 flex-col items-center justify-center px-6 py-16;
+    }
+
+    .core-header {
+      @apply w-full text-center;
+    }
+
+    .core-header h2 {
+      @apply text-h1 font-bold text-text tracking-[-0.04em] max-md:text-[30px];
+    }
+
+    .core-guide-slot {
+      @apply mt-4 h-12 w-full flex-center;
+    }
+
+    .core-visuals-slot {
+      @apply mt-8 h-[430px] w-full flex-center max-md:h-[360px];
+    }
+  }
+
+  .sectionGuide {
+    @apply relative flex items-center justify-between;
+  }
+
+  .sectionGuide-line {
+    @apply absolute rounded-full bg-secondary;
+  }
+
+  .sectionGuide-dot {
+    @apply relative z-10 grid place-items-center rounded-full p-0 cursor-pointer border-solid border-2 border-secondary;
+    background: var(--color-tertiary);
+    transition:
+      width 350ms ease,
+      height 350ms ease,
+      transform 350ms ease,
+      box-shadow 350ms ease,
+      background 350ms ease;
+  }
+
+  .sectionGuide-dot span {
+    @apply text-[10px] font-black text-text;
+
+    opacity: 0;
+    transform: scale(0.7);
+
+    transition:
+      opacity 250ms ease,
+      transform 250ms ease;
+  }
+
+  .sectionGuide-dot.is-active {
+    @apply border-none!;
+    background: var(--color-tertiary);
+    box-shadow:
+      0 0 0 8px var(--color-tertiary),
+      0 0 0 13px rgba(255, 105, 0, 0.32);
+  }
+
+  .sectionGuide-dot.is-active span {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .sectionGuide-dot:hover {
+    transform: scale(1.08);
+  }
+
+  /* vertical guide */
+  .sectionGuide--vertical {
+    @apply flex-col;
+    width: 90px;
+    height: 440px;
+  }
+
+  .sectionGuide--vertical .sectionGuide-line {
+    @apply left-1/2 top-0 h-full w-1.5 -translate-x-1/2;
+  }
+
+  .sectionGuide--vertical .sectionGuide-dot {
+    @apply w-7.5 h-7.5;
+  }
+
+  .sectionGuide--vertical .sectionGuide-dot.is-active {
+    @apply w-12.5 h-12.5;
+  }
+
+  /* horizontal guide */
+  .sectionGuide--horizontal {
+    @apply flex-row;
+    width: 360px;
+    max-width: 90vw;
+    height: 80px;
+  }
+
+  .sectionGuide--horizontal .sectionGuide-line {
+    @apply left-0 top-1/2 h-1.75 w-full -translate-y-1/2;
+  }
+
+  .sectionGuide--horizontal .sectionGuide-dot {
+    @apply w-8 h-8;
+  }
+
+  .sectionGuide--horizontal .sectionGuide-dot.is-active {
+    @apply w-10 h-10;
+  }
+
+  /* ASG: vertical desktop, horizontal mobile */
+  .sectionGuide--responsive {
+    @apply flex-col max-md:flex-row max-md:h-20! max-md:w-90! max-md:max-w-[90vw];
+
+    width: 90px;
+    height: 440px;
+  }
+
+  .sectionGuide--responsive .sectionGuide-line {
+    @apply left-1/2 top-0 h-full w-1.5 -translate-x-1/2
+  max-md:left-0 max-md:top-1/2 max-md:h-1.75 max-md:w-full max-md:translate-x-0 max-md:-translate-y-1/2;
+  }
+
+  .sectionGuide--responsive .sectionGuide-dot {
+    @apply w-8 h-8;
+  }
+
+  .sectionGuide--responsive .sectionGuide-dot.is-active {
+    @apply w-10 h-10;
+  }
+
+  /* smaller/tighter version for section 4 */
+  .sectionGuide--compact {
+    width: 360px;
+    max-width: 90vw;
+    height: 48px;
+  }
+
+  .sectionGuide--compact .sectionGuide-dot {
+    @apply w-8 h-8;
+  }
+
+  .sectionGuide--compact .sectionGuide-dot.is-active {
+    @apply w-10 h-10;
+    box-shadow:
+      0 0 0 6px var(--color-tertiary),
+      0 0 0 10px rgba(255, 105, 0, 0.28);
   }
 }
 

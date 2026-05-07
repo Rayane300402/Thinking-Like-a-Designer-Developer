@@ -2,10 +2,14 @@ import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useMediaQuery } from "react-responsive";
-import ASGVisuals from "../props/ASGVisuals";
+import ASGVisuals from "./components/ASGVisuals";
 import { asgItems } from "../utils/asgData";
+import SectionGuide from "./components/SectionGuide";
 
-const steps = asgItems.map((item) => item.step);
+const guideItems = asgItems.map((item) => ({
+  id: item.step,
+  label: item.step,
+}));
 
 const ASG = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -19,117 +23,113 @@ const ASG = () => {
     });
   }, []);
 
-useGSAP(
-  () => {
-    if (!sectionRef.current) return;
+  useGSAP(
+    () => {
+      if (!sectionRef.current) return;
 
-    const section = sectionRef.current;
-    const totalSteps = steps.length - 1;
+      const section = sectionRef.current;
+      const totalSteps = guideItems.length - 1;
 
-    gsap.set(".game-copy h2", {
-      y: 70,
-      opacity: 0,
-    });
+      gsap.set(".game-copy h2", {
+        y: 70,
+        opacity: 0,
+      });
 
-    gsap.set(".game-copy p", {
-      y: 35,
-      opacity: 0,
-    });
+      gsap.set(".game-copy p", {
+        y: 35,
+        opacity: 0,
+      });
 
-    gsap.set(".visual-card", {
-      x: isMobile ? 0 : 120,
-      y: isMobile ? 60 : 0,
-      opacity: 0,
-      scale: 0.92,
-    });
+      gsap.set(".visual-card", {
+        x: isMobile ? 0 : 120,
+        y: isMobile ? 60 : 0,
+        opacity: 0,
+        scale: 0.92,
+      });
 
-    // entrance animation
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: "top 75%",
-        end: "top 20%",
-        scrub: 1,
-      },
-    })
-      .to(".game-copy h2", {
-        y: 0,
-        opacity: 1,
-        ease: "power3.out",
-      })
-      .to(
-        ".game-copy p",
-        {
+      // entrance animation
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top 75%",
+            end: "top 20%",
+            scrub: 1,
+          },
+        })
+        .to(".game-copy h2", {
           y: 0,
           opacity: 1,
           ease: "power3.out",
-        },
-        "-=0.4",
-      )
-      .to(
-        ".visual-card",
+        })
+        .to(
+          ".game-copy p",
+          {
+            y: 0,
+            opacity: 1,
+            ease: "power3.out",
+          },
+          "-=0.4",
+        )
+        .to(
+          ".visual-card",
+          {
+            x: 0,
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            stagger: 0.14,
+            ease: "power3.out",
+          },
+          "-=0.45",
+        );
+
+      // existing pinned scroll logic
+      gsap.to(
+        {},
         {
-          x: 0,
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          stagger: 0.14,
-          ease: "power3.out",
-        },
-        "-=0.45",
-      );
+          scrollTrigger: {
+            trigger: section,
+            start: isMobile ? "top 20%" : "top top",
 
-    // existing pinned scroll logic
-    gsap.to(
-      {},
-      {
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: `+=${steps.length * 600}`,
-          scrub: true,
-          pin: true,
-          anticipatePin: 1,
-          onUpdate: (self) => {
-            const nextIndex = gsap.utils.clamp(
-              0,
-              totalSteps,
-              Math.round(self.progress * totalSteps),
-            );
+            // shorter mobile distance so the dots update while content is visible
+            end: isMobile
+              ? `+=${guideItems.length * 400}`
+              : `+=${guideItems.length * 600}`,
+            scrub: true,
+            pin: true,
+            anticipatePin: 1,
+            onUpdate: (self) => {
+              const nextIndex = gsap.utils.clamp(
+                0,
+                totalSteps,
+                Math.round(self.progress * totalSteps),
+              );
 
-            setActiveIndex(nextIndex);
+              setActiveIndex(nextIndex);
+            },
           },
         },
-      },
-    );
-  },
-  {
-    scope: sectionRef,
-    dependencies: [isMobile],
-    revertOnUpdate: true,
-  },
-);
-
-  const handleDotClick = (index: number) => {
-    setActiveIndex(index);
-  };
+      );
+    },
+    {
+      scope: sectionRef,
+      dependencies: [isMobile],
+      revertOnUpdate: true,
+    },
+  );
 
   return (
-    <section ref={sectionRef} className="affordanceGame">
+    <section ref={sectionRef} className="section-view affordanceGame">
       <div className="game-layout">
-        <aside className="game-guide" aria-label="Affordance examples progress">
-          <div className="guide-line" />
-
-          {steps.map((step, index) => (
-            <button
-              key={step}
-              type="button"
-              onClick={() => handleDotClick(index)}
-              className={`guide-dot ${activeIndex === index ? "is-active" : ""}`}
-              aria-label={`Go to example ${step}`}
-            ></button>
-          ))}
-        </aside>
+        <SectionGuide
+          items={guideItems}
+          activeIndex={activeIndex}
+          onChange={setActiveIndex}
+          ariaLabel="Affordance examples progress"
+          orientation="responsive"
+          className="game-guide"
+        />
 
         <div className="game-copy">
           <h2>

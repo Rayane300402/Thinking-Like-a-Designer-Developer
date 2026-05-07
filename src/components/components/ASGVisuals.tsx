@@ -1,4 +1,4 @@
-import { asgItems } from "../utils/asgData";
+import { asgItems } from "../../utils/asgData";
 
 type ASGVisualsProps = {
   activeIndex: number;
