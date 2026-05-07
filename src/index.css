@@ -297,7 +297,43 @@ body {
     }
 
     .game-visuals {
-      @apply min-h-105 max-md:min-h-65 max-md:w-full;
+      @apply min-h-105 max-md:min-h-65 max-md:w-full flex-center max-md:py-10;
+    }
+
+    .visual-pair {
+      @apply flex items-center justify-center gap-10 bg-transparent border-0 p-0 cursor-pointer;
+    }
+
+    .visual-card {
+      @apply relative overflow-hidden bg-bg flex items-center justify-center;
+      width: 300px;
+      height: 400px;
+    }
+
+    .visual-card img {
+      @apply h-fit w-full object-center;
+    }
+
+    .visual-card.is-current {
+      @apply opacity-100 scale-100;
+    }
+
+    .visual-card.is-next {
+      @apply opacity-90 scale-95;
+    }
+
+    .visual-card {
+      transition:
+        opacity 350ms ease,
+        transform 350ms ease;
+    }
+
+    .visual-pair:hover .visual-card.is-current {
+      transform: scale(1.02);
+    }
+
+    .visual-pair:hover .visual-card.is-next {
+      transform: scale(0.98);
     }
   }
 }

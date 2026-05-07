@@ -1,6 +1,6 @@
 import NormanDoor from "../components/NormanDoor";
 import Title from "../components/Title";
-import ASG from "./ASG";
+import ASG from "../components/ASG";
 
 export default function Workshop() {
   return (

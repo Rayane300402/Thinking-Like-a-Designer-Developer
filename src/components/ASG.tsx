@@ -1,37 +1,114 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useMediaQuery } from "react-responsive";
+import ASGVisuals from "../props/ASGVisuals";
+import { asgItems } from "../utils/asgData";
 
-const steps = ["01", "02", "03", "04", "05"];
+const steps = asgItems.map((item) => item.step);
 
 const ASG = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
-  useGSAP(() => {
+  useEffect(() => {
+    asgItems.forEach((item) => {
+      const img = new Image();
+      img.src = item.src;
+    });
+  }, []);
+
+useGSAP(
+  () => {
     if (!sectionRef.current) return;
 
+    const section = sectionRef.current;
     const totalSteps = steps.length - 1;
 
+    gsap.set(".game-copy h2", {
+      y: 70,
+      opacity: 0,
+    });
+
+    gsap.set(".game-copy p", {
+      y: 35,
+      opacity: 0,
+    });
+
+    gsap.set(".visual-card", {
+      x: isMobile ? 0 : 120,
+      y: isMobile ? 60 : 0,
+      opacity: 0,
+      scale: 0.92,
+    });
+
+    // entrance animation
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 75%",
+        end: "top 20%",
+        scrub: 1,
+      },
+    })
+      .to(".game-copy h2", {
+        y: 0,
+        opacity: 1,
+        ease: "power3.out",
+      })
+      .to(
+        ".game-copy p",
+        {
+          y: 0,
+          opacity: 1,
+          ease: "power3.out",
+        },
+        "-=0.4",
+      )
+      .to(
+        ".visual-card",
+        {
+          x: 0,
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          stagger: 0.14,
+          ease: "power3.out",
+        },
+        "-=0.45",
+      );
+
+    // existing pinned scroll logic
     gsap.to(
       {},
       {
         scrollTrigger: {
-          trigger: sectionRef.current,
+          trigger: section,
           start: "top top",
           end: `+=${steps.length * 600}`,
           scrub: true,
           pin: true,
+          anticipatePin: 1,
           onUpdate: (self) => {
-            const nextIndex = Math.round(self.progress * totalSteps);
+            const nextIndex = gsap.utils.clamp(
+              0,
+              totalSteps,
+              Math.round(self.progress * totalSteps),
+            );
+
             setActiveIndex(nextIndex);
           },
         },
       },
     );
-  }, []);
+  },
+  {
+    scope: sectionRef,
+    dependencies: [isMobile],
+    revertOnUpdate: true,
+  },
+);
 
   const handleDotClick = (index: number) => {
     setActiveIndex(index);
@@ -79,7 +156,7 @@ const ASG = () => {
           </p>
         </div>
 
-        <div className="game-visuals" />
+        <ASGVisuals activeIndex={activeIndex} onChange={setActiveIndex} />
       </div>
     </section>
   );
