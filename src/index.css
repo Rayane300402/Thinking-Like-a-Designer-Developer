@@ -197,16 +197,10 @@ body {
   }
 
   .title {
-    @apply w-full h-full grid place-items-center px-6
-  max-md:min-h-[75svh] max-md:py-20;
+    @apply w-full h-full grid place-items-center px-6 max-md:min-h-[75svh] max-md:py-20;
 
     .title-copy {
-      @apply text-title text-text text-center
-    lg:leading-28
-    md:leading-20
-    leading-12
-    max-md:text-[42px]
-    max-md:leading-[0.95];
+      @apply text-title text-text text-center lg:leading-28 md:leading-20 leading-12 max-md:text-[42px] max-md:leading-[0.95];
       will-change: transform, opacity;
     }
 
@@ -227,6 +221,7 @@ body {
       @apply text-secondary;
     }
   }
+
   .affordanceGame {
     @apply w-full min-h-svh bg-tertiary text-text overflow-hidden;
 
@@ -238,8 +233,7 @@ body {
     }
 
     .game-guide {
-      @apply relative flex flex-col items-center justify-between
-  max-md:flex-row max-md:h-20! max-md:w-90! max-md:max-w-[90vw];
+      @apply relative flex flex-col items-center justify-between max-md:flex-row max-md:h-20! max-md:w-90! max-md:max-w-[90vw];
 
       width: 90px;
       height: 440px;
@@ -250,12 +244,8 @@ body {
     }
 
     .guide-dot {
-      @apply relative z-10 grid place-items-center rounded-full p-0 cursor-pointer max-md:w-6! max-md:h-6!;
-
-      width: 30px;
-      height: 30px;
-      background: #d4d4db;
-
+      @apply relative z-10 grid place-items-center rounded-full p-0 cursor-pointer w-7.5 h-7.5 max-md:w-6! max-md:h-6! border-solid border-2 border-secondary;
+      background: var(--color-tertiary);
       transition:
         width 350ms ease,
         height 350ms ease,
@@ -276,12 +266,8 @@ body {
     }
 
     .guide-dot.is-active {
-      @apply max-md:h-10! max-md:w-10!;
-
-      width: 50px;
-      height: 50px;
-      background: #d4d4db;
-
+      @apply max-md:h-10! max-md:w-10! border-none! w-12.5 h-12.5;
+      background: var(--color-tertiary);
       box-shadow:
         0 0 0 8px var(--color-tertiary),
         0 0 0 13px rgba(255, 105, 0, 0.32);
