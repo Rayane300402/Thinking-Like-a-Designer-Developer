@@ -130,6 +130,14 @@ body {
   @apply w-full h-full grid place-items-center;
 }
 
+@utility header-content{
+   @apply w-full text-center;
+}
+
+@utility header-h2 {
+  @apply text-h1 font-bold text-text tracking-[-0.04em] max-md:text-[30px];
+}
+
 @layer components {
   .normanDoor {
     @apply w-full h-full grid place-items-center max-md:py-12;
@@ -297,14 +305,6 @@ body {
       @apply mx-auto flex h-full w-full max-w-360 flex-col items-center justify-center px-6 py-16;
     }
 
-    .core-header {
-      @apply w-full text-center;
-    }
-
-    .core-header h2 {
-      @apply text-h1 font-bold text-text tracking-[-0.04em] max-md:text-[30px];
-    }
-
     .core-guide-slot {
       @apply mt-4 h-12 w-full flex-center;
     }
@@ -412,10 +412,12 @@ body {
   .psychology-blame {
     @apply w-full h-full grid place-items-center bg-tertiary max-md:py-12;
 
-    .layout {
+    .blame-layout {
       @apply mx-auto flex h-full w-full max-w-360 flex-col items-center justify-center px-6 py-16;
       background: url("/imgs/bg.png") center/cover no-repeat;
     }
+
+    
   }
 
   .sectionGuide {

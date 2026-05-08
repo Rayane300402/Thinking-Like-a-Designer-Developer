@@ -150,8 +150,8 @@ const CoreConcepts = () => {
   return (
     <section ref={sectionRef} className="coreConcepts">
       <div className="core-layout">
-        <header className="core-header">
-          <h2>The Core Concepts of Design</h2>
+        <header className="core-header header-content">
+          <h2 className="header-h2">The Core Concepts of Design</h2>
         </header>
 
         <div className="core-guide-slot">
