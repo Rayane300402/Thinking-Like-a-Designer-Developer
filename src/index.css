@@ -237,7 +237,7 @@ body {
     }
 
     .game-copy {
-      @apply flex flex-col justify-center text-left max-md:w-full max-md:text-center max-md:items-center ;
+      @apply flex flex-col justify-center text-left max-md:w-full max-md:text-center max-md:items-center;
       min-height: 20px;
     }
 
@@ -310,7 +310,111 @@ body {
     }
 
     .core-visuals-slot {
-      @apply mt-8 h-[430px] w-full flex-center max-md:h-[360px];
+      @apply mt-8 h-107.5 w-full flex-center max-md:h-90;
+    }
+    .core-carousel {
+      @apply relative h-full w-full flex-center overflow-hidden cursor-pointer;
+      overflow: visible;
+    }
+
+    .core-carousel-stage {
+      @apply relative h-90 w-full max-w-260;
+      perspective: 1000px;
+    }
+
+    .core-card {
+      @apply absolute left-1/2 top-1/2 overflow-hidden border-0 p-0 text-left cursor-pointer;
+      width: 320px;
+      height: 400px;
+      transform: translate(-50%, -50%) translateX(calc(var(--offset) * 190px))
+        scale(calc(1 - (var(--abs-offset) * 0.06)));
+      z-index: calc(20 - var(--abs-offset));
+      box-shadow: 0 0 50px rgba(255, 105, 0, 0.25);
+      transition:
+        transform 500ms ease,
+        opacity 500ms ease,
+        filter 500ms ease;
+    }
+
+    .core-card img {
+      @apply absolute inset-0 h-full w-full object-cover;
+    }
+
+    .core-card-content {
+      @apply absolute inset-x-0 bottom-0 z-10 p-7 text-text;
+    }
+
+    .core-card-icon {
+      @apply mb-4 grid h-11 w-11 place-items-center rounded-full border-2 border-secondary text-secondary text-[24px];
+    }
+
+    .core-card h3 {
+      @apply text-[30px] font-bold leading-none tracking-[-0.04em];
+    }
+
+    .core-card p {
+      @apply mt-3 hidden text-[14px] font-semibold leading-[1.15] text-white;
+    }
+
+    .core-card.is-active {
+      width: 340px;
+      height: 420px;
+      opacity: 1;
+      filter: brightness(1.08);
+    }
+
+    .core-card.is-active p {
+      @apply block;
+    }
+
+    .core-card:not(.is-active) {
+      filter: brightness(0.72);
+    }
+
+    @media (max-width: 767px) {
+      .core-carousel {
+        overflow-x: clip;
+        overflow-y: visible;
+      }
+      .core-carousel-stage {
+        overflow: visible;
+      }
+      .core-carousel-stage {
+        @apply h-80 max-w-full;
+      }
+
+      .core-card {
+        width: 190px;
+        height: 290px;
+        transform: translate(-50%, -50%) translateX(calc(var(--offset) * 100px))
+          scale(calc(1 - (var(--abs-offset) * 0.08)));
+      }
+
+      .core-card.is-active {
+        width: 230px;
+        height: 315px;
+      }
+
+      .core-card-content {
+        @apply p-5;
+      }
+
+      .core-card h3 {
+        @apply text-[24px];
+      }
+
+      .core-card p {
+        @apply text-[12px];
+      }
+    }
+  }
+
+  .psychology-blame {
+    @apply w-full h-full grid place-items-center bg-tertiary max-md:py-12;
+
+    .layout {
+      @apply mx-auto flex h-full w-full max-w-360 flex-col items-center justify-center px-6 py-16;
+      background: url("/imgs/bg.png") center/cover no-repeat;
     }
   }
 

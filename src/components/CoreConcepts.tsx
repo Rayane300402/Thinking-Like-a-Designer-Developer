@@ -1,13 +1,13 @@
 import { useState } from "react";
 import SectionGuide from "./components/SectionGuide";
+import CoreConceptVisuals from "./components/coreConceptsVisual";
+import { coreConceptItems } from "../utils/coreConceptsData";
 
-const coreConceptGuideItems = [
-  { id: "feedback", label: 1 },
-  { id: "constraints", label: 2 },
-  { id: "affordance", label: 3 },
-  { id: "signifiers", label: 4 },
-  { id: "mapping", label: 5 },
-];
+const guideItems = coreConceptItems.map((item) => ({
+  id: item.id,
+  label: "",
+}));
+
 
 const CoreConcepts = () => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -20,7 +20,7 @@ const CoreConcepts = () => {
 
         <div className="core-guide-slot">
           <SectionGuide
-            items={coreConceptGuideItems}
+            items={guideItems}
             activeIndex={activeIndex}
             onChange={setActiveIndex}
             ariaLabel="Core design concepts progress"
@@ -30,7 +30,10 @@ const CoreConcepts = () => {
         </div>
 
         <div className="core-visuals-slot">
-          {/* carousel goes here later */}
+          <CoreConceptVisuals
+            activeIndex={activeIndex}
+            onChange={setActiveIndex}
+          />
         </div>
       </div>
     </section>
