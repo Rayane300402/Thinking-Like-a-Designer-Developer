@@ -35,6 +35,13 @@
     font-weight: 900;
     font-style: normal;
   }
+
+  @font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/Montserrat-BoldItalic.ttf") format("truetype");
+    font-weight: 700;
+    font-style: italic;
+  }
 }
 
 @theme {
@@ -130,8 +137,8 @@ body {
   @apply w-full h-full grid place-items-center;
 }
 
-@utility header-content{
-   @apply w-full text-center;
+@utility header-content {
+  @apply w-full text-center;
 }
 
 @utility header-h2 {
@@ -417,7 +424,141 @@ body {
       background: url("/imgs/bg.png") center/cover no-repeat;
     }
 
-    
+    .blame-content {
+      @apply mt-16 grid w-full items-center gap-16;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .blame-left {
+      @apply flex flex-row items-center gap-10 px-20;
+    }
+
+    .blame-accent-line {
+      @apply h-90 w-1.5 rounded-full bg-secondary;
+    }
+
+    .blame-copy {
+      @apply flex flex-col items-start justify-center;
+    }
+
+    .main-title {
+      @apply w-full text-title font-bold;
+    }
+
+    .main-title span {
+      @apply text-secondary font-montserrat font-bold italic;
+    }
+
+    .blame-subtitle {
+      @apply mt-6 w-full text-body;
+    }
+
+    .blame-subtitle span {
+      @apply text-secondary;
+    }
+
+    .blame-right {
+      @apply relative flex min-h-80 flex-col items-center justify-center overflow-hidden;
+    }
+
+    .blame-question-mark {
+      @apply absolute select-none font-black leading-none text-subtext;
+      font-size: 420px;
+      opacity: 0.28;
+      right: 2%;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .blame-control {
+      @apply relative z-10 flex flex-col items-start;
+    }
+
+    .blame-switch {
+      @apply relative z-10 rounded-full border-0 p-0 overflow-visible cursor-pointer;
+      width: 165px;
+      height: 78px;
+      background: #27272a;
+      transition: background 350ms ease;
+    }
+
+    .blame-switch-dot {
+      @apply absolute rounded-full bg-text;
+      width: 64px;
+      height: 64px;
+      left: 7px;
+      top: 7px;
+      box-shadow: 0 0 18px rgba(255, 255, 255, 0.1);
+      transition: left 450ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+
+    .blame-control-text {
+      @apply relative z-10 mt-6 text-center text-subtext;
+    }
+
+    .blame-control-text {
+      @apply mt-4 text-center;
+    }
+
+    @media (max-width: 767px) {
+      .blame-layout {
+        @apply px-6 py-10 justify-center;
+      }
+
+      .blame-content {
+        @apply mt-10 flex flex-col gap-10;
+      }
+
+      .blame-left {
+        @apply w-full justify-start gap-5 px-0;
+      }
+
+      .blame-accent-line {
+        @apply h-48 w-1 rounded-full;
+      }
+
+      .main-title {
+        @apply text-[46px] leading-[0.95] tracking-[-0.06em];
+      }
+
+      .blame-subtitle {
+        @apply mt-5 text-[20px] leading-[1.25];
+      }
+
+      .blame-right {
+        @apply min-h-52 w-full items-center justify-center overflow-visible pl-8;
+      }
+
+      .blame-question-mark {
+        font-size: 220px;
+        opacity: 0.22;
+        right: 2%;
+        top: 50%;
+      }
+
+      .blame-control {
+        @apply items-start;
+      }
+
+      .blame-switch {
+        width: 118px;
+        height: 56px;
+      }
+
+      .blame-switch-dot {
+        width: 46px;
+        height: 46px;
+        left: 5px;
+        top: 5px;
+        margin-left: 0;
+      }
+
+      .blame-control-text {
+        @apply mt-4 text-left text-[16px] leading-tight;
+      }
+    }
   }
 
   .sectionGuide {
@@ -527,7 +668,6 @@ body {
     @apply w-10 h-10;
   }
 
-  /* smaller/tighter version for section 4 */
   .sectionGuide--compact {
     width: 360px;
     max-width: 90vw;
