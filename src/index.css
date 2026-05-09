@@ -109,7 +109,7 @@ body {
 }
 
 @utility text-h3 {
-  @apply font-montserrat text-[32px] font-semibold leading-[1.2] tracking-[-0.02em];
+  @apply font-montserrat lg:text-[28px] md:text-[20px] text-[18px] font-medium leading-[1.2] tracking-[-0.02em];
 }
 
 @utility text-body {
@@ -526,7 +526,7 @@ body {
       }
 
       .blame-subtitle {
-        @apply mt-5 text-[20px] leading-[1.25];
+        @apply mt-5 text-[20px] leading-tight;
       }
 
       .blame-right {
@@ -560,6 +560,36 @@ body {
       .blame-control-text {
         @apply mt-4 text-left text-[16px] leading-tight;
       }
+    }
+  }
+
+  .mental-models {
+    @apply w-full min-h-[200svh] grid place-items-center bg-tertiary max-md:py-12;
+
+    .mental-layout {
+      @apply mx-auto flex min-h-[200svh] w-full max-w-360 flex-col items-center px-6 py-16;
+    }
+
+    .mental-header {
+      @apply w-full shrink-0;
+    }
+
+    .mental-masonry {
+      @apply mt-14 w-full flex-1;
+    }
+
+    .mental-quote {
+      @apply mt-14 w-full shrink-0 text-center px-6;
+    }
+
+    .mental-quote-text {
+      @apply text-h3 font-medium italic leading-tight text-subtext
+    max-md:text-[18px] max-md:leading-[1.35];
+    }
+
+    .mental-quote-author {
+      @apply mt-4 block font-montserrat text-[22px] font-bold text-secondary
+    max-md:text-[18px];
     }
   }
 
