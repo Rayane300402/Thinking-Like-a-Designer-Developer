@@ -1,15 +1,167 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
+import clsx from "clsx";
+import { useGSAP } from "@gsap/react";
 
 const PsychologyOfBlame = () => {
+  const sectionRef = useRef<HTMLElement | null>(null);
   const switchRef = useRef<HTMLButtonElement | null>(null);
   const dotRef = useRef<HTMLSpanElement | null>(null);
   const isAnimating = useRef(false);
+
+  const [showBlameText, setShowBlameText] = useState(false);
+
+  useGSAP(
+    () => {
+      if (!sectionRef.current) return;
+
+      // Initial states
+      gsap.set(".blame-header h2", {
+        y: 40,
+        opacity: 0,
+      });
+
+      gsap.set(".blame-accent-line", {
+        scaleY: 0,
+        transformOrigin: "center center",
+      });
+
+      gsap.set(".main-title h3", {
+        x: -80,
+        opacity: 0,
+      });
+
+      gsap.set(".main-title span", {
+        scale: 0.7,
+        opacity: 0,
+        transformOrigin: "center center",
+      });
+
+      gsap.set(".blame-subtitle", {
+        y: 20,
+        opacity: 0,
+      });
+
+      gsap.set(".blame-question-mark", {
+        scale: 0.8,
+        opacity: 0,
+      });
+
+      gsap.set(".blame-control", {
+        x: 60,
+        opacity: 0,
+      });
+
+      // Scroll-triggered entrance
+      gsap
+        .timeline({
+          defaults: {
+            duration: 1.4,
+            ease: "power3.out",
+          },
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%",
+            end: "center center",
+            scrub: 2.2,
+          },
+        })
+        // Header
+        .to(".blame-header h2", {
+          y: 0,
+          opacity: 1,
+        })
+
+        // Accent line drawing
+        .to(
+          ".blame-accent-line",
+          {
+            scaleY: 1,
+            duration: 1.8,
+          },
+          "-=0.7",
+        )
+
+        // Main title slides in
+        .to(
+          ".main-title h3",
+          {
+            x: 0,
+            opacity: 1,
+            duration: 1.8,
+          },
+          "-=1.0",
+        )
+
+        // Orange "A"
+        .to(
+          ".main-title span",
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 1.2,
+            ease: "back.out(1.8)",
+          },
+          "-=0.8",
+        )
+
+        // Subtitle
+        .to(
+          ".blame-subtitle",
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1.3,
+          },
+          "-=0.9",
+        )
+
+        // Question mark
+        .to(
+          ".blame-question-mark",
+          {
+            scale: 1,
+            opacity: 0.28,
+            duration: 1.8,
+          },
+          "-=1.1",
+        )
+
+        // Switch
+        .to(
+          ".blame-control",
+          {
+            x: 0,
+            opacity: 1,
+            duration: 1.6,
+            ease: "back.out(1.4)",
+          },
+          "-=1.0",
+        )
+
+        .to(
+          switchRef.current,
+          {
+            x: 6,
+            duration: 0.25,
+            ease: "power1.inOut",
+            yoyo: true,
+            repeat: 1,
+          },
+          "-=0.2",
+        );
+    },
+    {
+      scope: sectionRef,
+      revertOnUpdate: true,
+    },
+  );
 
   const handleBrokenSwitch = () => {
     if (!switchRef.current || !dotRef.current || isAnimating.current) return;
 
     isAnimating.current = true;
+    setShowBlameText(false);
 
     const isMobile = window.innerWidth < 768;
     const onX = isMobile ? 62 : 87;
@@ -57,6 +209,9 @@ const PsychologyOfBlame = () => {
         },
         "-=0.18",
       )
+      .call(() => {
+        setShowBlameText(true);
+      })
 
       // bounce back home
       .to(dotRef.current, {
@@ -70,7 +225,7 @@ const PsychologyOfBlame = () => {
   };
 
   return (
-    <section className="section-view psychology-blame">
+    <section ref={sectionRef} className="section-view psychology-blame">
       <div className="blame-layout">
         <header className="blame-header header-content">
           <h2 className="header-h2">The Psychology of Blame</h2>
@@ -111,7 +266,16 @@ const PsychologyOfBlame = () => {
               >
                 <span ref={dotRef} className="blame-switch-dot" />
               </button>
-              <div className="blame-control-text">Did you mean to do that?</div>
+              <div
+                className={clsx(
+                  "blame-control-text transition-all duration-300",
+                  showBlameText
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-2 pointer-events-none",
+                )}
+              >
+                Did you mean to do that?
+              </div>
             </div>
           </div>
         </div>
