@@ -89,7 +89,7 @@ const CoreConcepts = () => {
 
       gsap.set(".core-card", {
         opacity: 0,
-        filter: "brightness(0.5)",
+        // filter: "brightness(0.5)",
       });
 
       gsap
