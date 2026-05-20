@@ -1,4 +1,5 @@
 import { coreConceptItems } from "../../utils/coreConceptsData";
+import RoundIcon from "../shared/RoundIcon";
 
 type CoreConceptVisualsProps = {
   activeIndex: number;
@@ -52,7 +53,7 @@ const CoreConceptVisuals = ({
               <img src={item.src} alt={item.title} />
 
               <div className="core-card-content">
-                <div className="core-card-icon"><Icon /></div>
+                <RoundIcon Icon={Icon} className="core-card-icon" />
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
               </div>

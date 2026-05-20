@@ -17,9 +17,23 @@
 
   @font-face {
     font-family: "Montserrat";
+    src: url("/fonts/Montserrat-MediumItalic.ttf") format("truetype");
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: "Montserrat";
     src: url("/fonts/Montserrat-SemiBold.ttf") format("truetype");
     font-weight: 600;
     font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/Montserrat-SemiBoldItalic.ttf") format("truetype");
+    font-weight: 600;
+    font-style: italic;
   }
 
   @font-face {
@@ -31,16 +45,16 @@
 
   @font-face {
     font-family: "Montserrat";
-    src: url("/fonts/Montserrat-Black.ttf") format("truetype");
-    font-weight: 900;
-    font-style: normal;
+    src: url("/fonts/Montserrat-BoldItalic.ttf") format("truetype");
+    font-weight: 700;
+    font-style: italic;
   }
 
   @font-face {
     font-family: "Montserrat";
-    src: url("/fonts/Montserrat-BoldItalic.ttf") format("truetype");
-    font-weight: 700;
-    font-style: italic;
+    src: url("/fonts/Montserrat-Black.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
   }
 }
 
@@ -353,10 +367,6 @@ body {
 
     .core-card-content {
       @apply absolute inset-x-0 bottom-0 z-10 p-7 text-text;
-    }
-
-    .core-card-icon {
-      @apply mb-4 grid h-11 w-11 place-items-center rounded-full border-2 border-secondary text-secondary text-[24px];
     }
 
     .core-card h3 {
@@ -767,13 +777,40 @@ body {
     }
 
     .mental-quote-author {
-      @apply mt-4 block font-montserrat text-[22px] font-bold text-secondary
+      @apply mt-4 block font-montserrat text-[22px] font-semibold not-italic text-secondary
     max-md:text-[15px];
     }
   }
 
   .design-business {
-    @apply w-full h-full grid place-items-center bg-tertiary max-md:py-12;
+    @apply w-full min-h-[200svh] grid place-items-center bg-tertiary py-24  max-md:py-12;
+
+    .business-layout {
+      @apply mx-auto flex min-h-[200svh] w-full max-w-360 flex-col items-center px-6 py-12;
+    }
+
+    .business-header {
+      @apply w-full shrink-0;
+    }
+
+    .business-quote {
+      @apply mt-6 w-full shrink-0 text-center px-6;
+    }
+
+    .business-quote-text {
+      @apply text-h3 font-medium italic leading-tight text-subtext
+    max-md:text-[15px] max-md:leading-[1.35];
+    }
+
+    .business-quote-author {
+      @apply mt-4 block font-montserrat text-[22px] font-semibold not-italic text-secondary
+    max-md:text-[15px];
+    }
+  }
+
+  .round-icon {
+    @apply grid h-11 w-11 place-items-center rounded-full border-2 mb-4 border-secondary text-secondary text-[24px];
+    background: rgba(255, 105, 0, 0.42);
   }
 
   .sectionGuide {
