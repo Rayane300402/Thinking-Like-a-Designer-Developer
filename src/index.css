@@ -116,6 +116,10 @@ body {
   @apply font-montserrat text-[18px] font-semibold leading-normal;
 }
 
+@utility text-normal {
+  @apply font-montserrat text-[18px] leading-normal font-normal;
+}
+
 @utility app-page {
   @apply min-h-svh w-full bg-bg text-text overflow-x-hidden;
 }
@@ -564,33 +568,174 @@ body {
   }
 
   .mental-models {
-    @apply w-full min-h-[200svh] grid place-items-center bg-tertiary max-md:py-12;
+    @apply w-full min-h-[200svh] grid place-items-center bg-bg py-24  max-md:py-12;
 
     .mental-layout {
-      @apply mx-auto flex min-h-[200svh] w-full max-w-360 flex-col items-center px-6 py-16;
+      @apply mx-auto flex min-h-[200svh] w-full max-w-360 flex-col items-center px-6 py-12;
     }
 
     .mental-header {
       @apply w-full shrink-0;
     }
 
+    .mental-icon {
+      @apply grid h-12 w-12 place-items-center rounded-md border text-[25px];
+    }
+
+    /* --------------- MASONRY ---------------*/
+
     .mental-masonry {
       @apply mt-14 w-full flex-1;
     }
 
+    .mental-masonry-grid {
+      @apply mx-auto w-full max-w-300;
+    }
+
+    .mental-part-one {
+      @apply grid w-full gap-6;
+      grid-template-columns: 0.9fr 1.6fr;
+    }
+
+    .mental-part-one-left {
+      @apply flex flex-col gap-6;
+    }
+
+    .mental-part-one-right {
+      @apply flex flex-col gap-6;
+    }
+
+    .mental-part-one-right-top {
+      @apply grid gap-8;
+      grid-template-columns: 1fr 0.82fr;
+    }
+
+    .mental-part-one-right-stack {
+      @apply flex flex-col gap-6;
+    }
+
+    .mental-card {
+      @apply relative flex flex-col justify-between rounded-md bg-tertiary p-6;
+    }
+
+    .mental-card-tall {
+      height: 400px;
+    }
+
+    .mental-card-small {
+      height: 270px;
+    }
+
+    .mental-card-wide {
+      height: 236px;
+    }
+
+    .mental-part-two {
+      @apply mt-6 flex flex-col gap-6;
+    }
+
+    .mental-part-two-top {
+      @apply grid gap-6;
+      grid-template-columns: 1fr 0.83fr;
+    }
+
+    .mental-part-two-bottom {
+      @apply grid gap-6;
+      grid-template-columns: 0.9fr 1.1fr;
+    }
+
+    .mental-card-part-two {
+      height: 250px;
+    }
+
+    .mental-card-copy h3 {
+      @apply text-h2;
+    }
+
+    .mental-card-copy p {
+      @apply mt-3 text-normal;
+    }
+
+    @media (max-width: 767px) {
+      .mental-models {
+        @apply min-h-fit py-12;
+      }
+
+      .mental-layout {
+        @apply min-h-fit px-5 py-10;
+      }
+
+      .mental-masonry {
+        @apply mt-10 w-full;
+      }
+
+      .mental-masonry-grid {
+        @apply max-w-full px-6;
+      }
+
+      .mental-part-one,
+      .mental-part-one-right-top,
+      .mental-part-two-top,
+      .mental-part-two-bottom {
+        @apply flex flex-col gap-5;
+      }
+
+      .mental-part-one-left,
+      .mental-part-one-right,
+      .mental-part-one-right-stack,
+      .mental-part-two {
+        @apply flex flex-col gap-5;
+      }
+
+      .mental-card,
+      .mental-card-tall,
+      .mental-card-small,
+      .mental-card-long,
+      .mental-card-wide,
+      .mental-card-part-two {
+        height: auto;
+        min-height: 200px;
+      }
+
+      .mental-icon {
+        @apply h-9 w-9 text-[19px];
+      }
+
+      .mental-card {
+        @apply p-5;
+      }
+
+      .mental-card-copy h3 {
+        @apply text-[26px] leading-[1.05];
+      }
+
+      .mental-card-copy p {
+        @apply mt-2 text-[13px] leading-[1.25];
+      }
+
+      .mental-quote {
+        @apply mt-12 px-2;
+      }
+    }
+
+    /* --------------- quote ---------------*/
     .mental-quote {
       @apply mt-14 w-full shrink-0 text-center px-6;
     }
 
     .mental-quote-text {
       @apply text-h3 font-medium italic leading-tight text-subtext
-    max-md:text-[18px] max-md:leading-[1.35];
+    max-md:text-[15px] max-md:leading-[1.35];
     }
 
     .mental-quote-author {
       @apply mt-4 block font-montserrat text-[22px] font-bold text-secondary
-    max-md:text-[18px];
+    max-md:text-[15px];
     }
+  }
+
+  .design-business {
+    @apply w-full h-full grid place-items-center bg-tertiary max-md:py-12;
   }
 
   .sectionGuide {

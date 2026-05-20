@@ -1,3 +1,5 @@
+import MentalModelsMasonry from "./mentalModelsComponents/MentalModelsMasonry";
+
 const MentalModels = () => {
   return (
     <section className="mental-models">
@@ -6,7 +8,9 @@ const MentalModels = () => {
           <h2 className="header-h2">Mental Models</h2>
         </header>
 
-        <div className="mental-masonry"></div>
+        <div className="mental-masonry">
+          <MentalModelsMasonry />
+        </div>
 
         <footer className="mental-quote">
           <blockquote className="mental-quote-text">

@@ -1,7 +1,7 @@
 
 const DesignBusiness = () => {
   return (
-    <section className="section-view">
+    <section className="section-view design-business">
         
     </section>
   )

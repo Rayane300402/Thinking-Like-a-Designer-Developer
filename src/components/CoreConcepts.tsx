@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import SectionGuide from "./components/SectionGuide";
-import CoreConceptVisuals from "./components/coreConceptsVisual";
+
 import { coreConceptItems } from "../utils/coreConceptsData";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import SectionGuide from "./shared/SectionGuide";
+import CoreConceptVisuals from "./coreConceptsComponents/coreConceptsVisual";
 
 const guideItems = coreConceptItems.map((item) => ({
   id: item.id,

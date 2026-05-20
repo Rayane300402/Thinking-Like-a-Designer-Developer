@@ -2,9 +2,9 @@ import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useMediaQuery } from "react-responsive";
-import ASGVisuals from "./components/ASGVisuals";
 import { asgItems } from "../utils/asgData";
-import SectionGuide from "./components/SectionGuide";
+import SectionGuide from "./shared/SectionGuide";
+import ASGVisuals from "./asgComponents/ASGVisuals";
 
 const guideItems = asgItems.map((item) => ({
   id: item.step,
