@@ -1,4 +1,4 @@
-import { mentalModelsData } from "../../utils/mentalModels";
+import { mentalModelsData } from "../../utils/mentalModelsData";
 import MentalModelIcon from "./MentalModelsIcon";
 
 const MentalModelsMasonry = () => {
@@ -16,20 +16,57 @@ const MentalModelsMasonry = () => {
   const renderCard = (
     item: (typeof mentalModelsData)[number],
     className = "",
-  ) => (
-    <article className={`mental-card ${className}`}>
-      <MentalModelIcon
-        Icon={item.Icon}
-        color={item.color}
-        background={item.background}
-      />
+  ) => {
+    const handleMouseMove = (event: React.MouseEvent<HTMLElement>) => {
+      const card = event.currentTarget;
+      const rect = card.getBoundingClientRect();
 
-      <div className="mental-card-copy">
-        <h3>{item.title}</h3>
-        <p>{item.subtitle}</p>
-      </div>
-    </article>
-  );
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateY = ((x - centerX) / centerX) * 6;
+      const rotateX = ((centerY - y) / centerY) * 6;
+
+      card.style.setProperty("--mouse-x", `${x}px`);
+      card.style.setProperty("--mouse-y", `${y}px`);
+      card.style.setProperty("--rotate-x", `${rotateX}deg`);
+      card.style.setProperty("--rotate-y", `${rotateY}deg`);
+    };
+
+    const handleMouseLeave = (event: React.MouseEvent<HTMLElement>) => {
+      const card = event.currentTarget;
+
+      card.style.setProperty("--rotate-x", "0deg");
+      card.style.setProperty("--rotate-y", "0deg");
+    };
+
+    return (
+      <article
+        className={`mental-card ${className}`}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={
+          {
+            "--glow-color": item.color,
+          } as React.CSSProperties
+        }
+      >
+        <MentalModelIcon
+          Icon={item.Icon}
+          color={item.color}
+          background={item.background}
+        />
+
+        <div className="mental-card-copy">
+          <h3>{item.title}</h3>
+          <p>{item.subtitle}</p>
+        </div>
+      </article>
+    );
+  };
 
   return (
     <div className="mental-masonry-grid">

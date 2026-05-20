@@ -161,7 +161,7 @@ body {
     }
 
     .door-frame {
-      @apply relative flex items-center justify-center max-md:w-[240px]! max-md:h-[340px]!;
+      @apply relative flex items-center justify-center max-md:w-60! max-md:h-85!;
       width: 350px;
       height: 500px;
       background: var(--color-tertiary);
@@ -277,7 +277,7 @@ body {
     }
 
     .visual-card {
-      @apply relative overflow-hidden bg-bg flex items-center justify-center max-md:w-[150px]! max-md:h-[250px]!;
+      @apply relative overflow-hidden bg-bg flex items-center justify-center max-md:w-37.5! max-md:h-62.5!;
       width: 300px;
       height: 400px;
     }
@@ -615,7 +615,45 @@ body {
     }
 
     .mental-card {
-      @apply relative flex flex-col justify-between rounded-md bg-tertiary p-6;
+      @apply relative flex flex-col justify-between overflow-hidden rounded-md bg-tertiary p-6;
+      transform-style: preserve-3d;
+      transform: perspective(1000px) rotateX(var(--rotate-x, 0deg))
+        rotateY(var(--rotate-y, 0deg)) translateY(0);
+      transition:
+        transform 180ms ease,
+        box-shadow 180ms ease;
+      will-change: transform;
+    }
+
+    .mental-card:hover {
+      transform: perspective(1000px) rotateX(var(--rotate-x, 0deg))
+        rotateY(var(--rotate-y, 0deg)) translateY(-6px);
+      box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.35),
+        0 0 30px color-mix(in srgb, var(--glow-color) 18%, transparent);
+    }
+
+    .mental-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 250ms ease;
+      background: radial-gradient(
+        500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        color-mix(in srgb, var(--glow-color) 28%, transparent),
+        transparent 55%
+      );
+    }
+
+    .mental-card:hover::before {
+      opacity: 1;
+    }
+
+    .mental-card > * {
+      position: relative;
+      z-index: 1;
     }
 
     .mental-card-tall {
@@ -710,7 +748,7 @@ body {
       }
 
       .mental-card-copy p {
-        @apply mt-2 text-[13px] leading-[1.25];
+        @apply mt-2 text-[13px] leading-tight;
       }
 
       .mental-quote {
